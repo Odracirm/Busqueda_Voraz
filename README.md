@@ -20,6 +20,9 @@ estaciones = {
 estados = {'Estado 1', 'Estado 2', 'Estado 3', 'Estado 4', 'Estado 5', 'Estado 6', 'Estado 7', 'Estado 8',   
            'Estado 9', 'Estado 10', 'Estado 11', 'Estado 12', 'Estado 13', 'Estado 14', 'Estado 15', 'Estado 16',  
            'Estado 17', 'Estado 18', 'Estado 19', 'Estado 20'}  
+
+#### Solución encontrada
+
 Podemos usar dos enfoques:
 
     Mínimo Local: Selección de estaciones de manera iterativa, eligiendo la estación que cubra más estados no cubiertos en cada paso.
@@ -62,6 +65,8 @@ Podemos usar dos enfoques:
 
     estaciones_seleccionadas_global = minimo_global(estaciones, estados)
     print("Estaciones seleccionadas (mínimo global):", estaciones_seleccionadas_global)
+
+#### Comparación entre Busqueda y Optimización
 
 Búsqueda Local: Más rápida pero puede no ser óptima.
 
