@@ -1,5 +1,6 @@
 #### Explicación del problema
 El ejercicio consiste en seleccionar un conjunto de 13 estaciones de radio que aseguren que todos los estados de un país (22) puedan escuchar música de Beyoncé. Dado un conjunto de estaciones y los estados que cada una cubre, debemos encontrar el subconjunto mínimo de estaciones que cubra todos los estados.  
+
 estaciones = {  
     'Estacion 1': {'Estado 1', 'Estado 2', 'Estado 3'},  
     'Estacion 2': {'Estado 3', 'Estado 4', 'Estado 5'},  
