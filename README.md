@@ -24,43 +24,43 @@ Podemos usar dos enfoques:
     Mínimo Local: Selección de estaciones de manera iterativa, eligiendo la estación que cubra más estados no cubiertos en cada paso.
     
     def minimo_local(estaciones, estados):
-    estados_cubiertos = set()
-    estaciones_seleccionadas = []
-    while estados_cubiertos != estados:
-        mejor_estacion = None
-        mejor_cobertura = set()
-        for estacion, estados_radio in estaciones.items():
-            cobertura = estados_radio - estados_cubiertos
-            if len(cobertura) > len(mejor_cobertura):
-                mejor_estacion = estacion
-                mejor_cobertura = cobertura
-        if mejor_estacion:
-            estaciones_seleccionadas.append(mejor_estacion)
-            estados_cubiertos.update(mejor_cobertura)
-            del estaciones[mejor_estacion]
-    return estaciones_seleccionadas
+        estados_cubiertos = set()
+        estaciones_seleccionadas = []
+        while estados_cubiertos != estados:
+            mejor_estacion = None
+            mejor_cobertura = set()
+            for estacion, estados_radio in estaciones.items():
+                cobertura = estados_radio - estados_cubiertos
+                if len(cobertura) > len(mejor_cobertura):
+                    mejor_estacion = estacion
+                    mejor_cobertura = cobertura
+            if mejor_estacion:
+                estaciones_seleccionadas.append(mejor_estacion)
+                estados_cubiertos.update(mejor_cobertura)
+                del estaciones[mejor_estacion]
+        return estaciones_seleccionadas
 
-estaciones_seleccionadas_local = minimo_local(estaciones.copy(), estados)
-print("Estaciones seleccionadas (mínimo local):", estaciones_seleccionadas_local)
+    estaciones_seleccionadas_local = minimo_local(estaciones.copy(), estados)
+    print("Estaciones seleccionadas (mínimo local):", estaciones_seleccionadas_local)
     
     Mínimo Global: Búsqueda de la combinación óptima mediante fuerza bruta.
 
     def minimo_global(estaciones, estados):
-    estaciones_combinadas = list(estaciones.items())
-    mejor_comb = None
-    mejor_num = len(estaciones) + 1
-    for r in range(1, len(estaciones_combinadas) + 1):
-        for combinacion in itertools.combinations(estaciones_combinadas, r):
-            estados_cubiertos = set()
-            for estacion, estados_radio in combinacion:
-                estados_cubiertos.update(estados_radio)
-            if estados_cubiertos == estados and len(combinacion) < mejor_num:
-                mejor_comb = combinacion
-                mejor_num = len(combinacion)
-    return [estacion for estacion, _ in mejor_comb]
+        estaciones_combinadas = list(estaciones.items())
+        mejor_comb = None
+        mejor_num = len(estaciones) + 1
+        for r in range(1, len(estaciones_combinadas) + 1):
+            for combinacion in itertools.combinations(estaciones_combinadas, r):
+                estados_cubiertos = set()
+                for estacion, estados_radio in combinacion:
+                    estados_cubiertos.update(estados_radio)
+                if estados_cubiertos == estados and len(combinacion) < mejor_num:
+                    mejor_comb = combinacion
+                    mejor_num = len(combinacion)
+        return [estacion for estacion, _ in mejor_comb]
 
-estaciones_seleccionadas_global = minimo_global(estaciones, estados)
-print("Estaciones seleccionadas (mínimo global):", estaciones_seleccionadas_global)
+    estaciones_seleccionadas_global = minimo_global(estaciones, estados)
+    print("Estaciones seleccionadas (mínimo global):", estaciones_seleccionadas_global)
 
 Búsqueda Local: Más rápida pero puede no ser óptima.
 
